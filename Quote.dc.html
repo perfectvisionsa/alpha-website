@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>طلب عرض سعر | ألفا المتطورة</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap">
+  <style>
+    @font-face{font-family:'Bulletproof';src:url('assets/fonts/BulletproofBB.ttf') format('truetype');font-display:swap}
+    html,body{margin:0;padding:0;background:#ffffff;color:#16232A}
+    body{font-family:'Cairo',sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:#16232A;text-decoration:none}
+    a:hover{color:#FF5B04}
+    .site{direction:rtl}
+    .site[data-lang="en"]{direction:ltr}
+    .t-en{display:none !important}
+    .site[data-lang="en"] .t-en{display:revert !important}
+    .site[data-lang="en"] .t-ar{display:none !important}
+    @media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}
+  </style>
+</helmet>
+<div class="site" data-lang="{{ lang }}" style="background:#ffffff;color:#16232A;min-height:100vh">
+
+  <header data-screen-label="Header" style="position:fixed;top:0;left:0;right:0;z-index:50;background:{{ hdrBg }};color:{{ hdrColor }};transform:translateY({{ hdrY }});transition:background-color 0.45s cubic-bezier(0.25,0.46,0.45,0.94),color 0.45s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)">
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;flex-wrap:wrap">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+        <span style="position:relative;display:block;height:24px">
+          <img src="assets/logos/logo-teal.svg" alt="Alpha Advanced" style="height:24px;display:block;opacity:{{ logoNavyOp }};transition:opacity 0.45s ease">
+          <img src="assets/logos/logo-white.svg" alt="" style="height:24px;display:block;position:absolute;top:0;inset-inline-start:0;opacity:{{ logoWhiteOp }};transition:opacity 0.45s ease">
+        </span>
+      </a>
+      <nav style="display:{{ navDisplay }};align-items:center;gap:28px;font-size:15px;font-weight:600;flex-wrap:wrap">
+        <a href="index.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button onClick="{{ toggleLang }}" style="font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;border:1px solid currentColor;background:transparent;color:inherit;width:48px;height:30px;box-sizing:border-box;padding:0;line-height:1.4;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="color:#FF5B04">
+          <span class="t-ar">EN</span><span class="t-en">عربي</span>
+        </button>
+        <a href="Quote.dc.html" style="background:#FF5B04;color:#16232A;font-size:13px;font-weight:800;padding:6px 18px;line-height:1.4;display:{{ ctaDisplay }};transition:background 0.25s ease,color 0.25s ease" style-hover="background:#ffffff;color:#16232A">
+          <span class="t-ar">اطلب عرض سعر</span><span class="t-en">Get a Quote</span>
+        </a>
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:{{ burgerDisplay }};flex-direction:column;align-items:center;justify-content:center;gap:4px;width:48px;height:30px;box-sizing:border-box;padding:0;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer">
+          <span style="display:block;width:16px;height:2px;background:currentColor;transform:{{ burgerTop }};transition:transform .3s cubic-bezier(.2,.8,.2,1)"></span>
+          <span style="display:block;width:16px;height:2px;background:currentColor;opacity:{{ burgerMidOp }};transition:opacity .2s ease"></span>
+          <span style="display:block;width:16px;height:2px;background:currentColor;transform:{{ burgerBot }};transition:transform .3s cubic-bezier(.2,.8,.2,1)"></span>
+        </button>
+      </div>
+    </div>
+    <div style="display:{{ menuDisplay }};flex-direction:column;background:{{ panelBg }};color:{{ panelColor }};border-top:1px solid rgba(128,140,145,0.35)">
+      <div style="max-width:1280px;margin:0 auto;width:100%;box-sizing:border-box;padding:0 24px 24px;display:flex;flex-direction:column">
+        <a href="index.html" style="color:inherit;padding:16px 0;font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+        <a href="Quote.dc.html" style="margin-top:20px;background:#FF5B04;color:#16232A;font-size:15px;font-weight:800;padding:14px 18px;line-height:1.4;display:block;text-align:center" style-hover="background:#ffffff;color:#16232A">
+          <span class="t-ar">اطلب عرض سعر</span><span class="t-en">Get a Quote</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section data-screen-label="Page Title" data-hdr="dark" data-hdr-transparent style="background:#16232A;color:#ffffff;border-bottom:1px solid #16232A">
+    <div style="max-width:1280px;margin:0 auto;padding:150px 24px 56px;display:flex;flex-direction:column;gap:16px">
+      <h1 style="margin:0;line-height:1.05;font-size:clamp(2.8rem,7vw,5rem)">
+        <span class="t-ar" style="font-weight:900;line-height:1.3">اطلب عرض سعر</span>
+        <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-weight:400">GET A QUOTE</span>
+      </h1>
+      <p style="margin:0;font-size:17px;line-height:1.8;color:rgba(255,255,255,0.85)">
+        <span class="t-ar">املأ التفاصيل وأرسلها بضغطة واحدة، أو تواصل معنا مباشرة، ونوافيك بالرد خلال ساعات العمل.</span>
+        <span class="t-en">Fill in the details and send them in one tap, or reach us directly. We reply during business hours.</span>
+      </p>
+    </div>
+  </section>
+
+  <section data-screen-label="Quote Form" data-hdr="light" style="border-bottom:1px solid #16232A">
+    <div style="max-width:1280px;margin:0 auto;padding:72px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:start">
+
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label style="font-weight:800;font-size:14px"><span class="t-ar">الاسم *</span><span class="t-en">Name *</span></label>
+            <input onInput="{{ onName }}" onBlur="{{ blurName }}" type="text" autoComplete="name" style="font-family:'Cairo',sans-serif;font-size:15px;padding:14px 16px;border:1px solid #16232A;border-color:{{ nameBorder }};background:#ffffff;color:#16232A;width:100%;box-sizing:border-box;border-radius:0" style-focus="outline:none;border-color:#FF5B04;box-shadow:inset 0 0 0 1px #FF5B04">
+            <sc-if value="{{ nameErr }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#FF5B04;font-size:13px;font-weight:700;line-height:1.6"><span class="t-ar">يرجى كتابة الاسم كاملاً.</span><span class="t-en">Please enter your full name.</span></span>
+            </sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label style="font-weight:800;font-size:14px"><span class="t-ar">رقم الجوال *</span><span class="t-en">Phone number *</span></label>
+            <input onInput="{{ onPhone }}" onBlur="{{ blurPhone }}" type="tel" inputMode="tel" autoComplete="tel" placeholder="05XXXXXXXX" dir="ltr" style="font-family:'Cairo',sans-serif;font-size:15px;padding:14px 16px;border:1px solid #16232A;border-color:{{ phoneBorder }};background:#ffffff;color:#16232A;width:100%;box-sizing:border-box;border-radius:0;text-align:start" style-focus="outline:none;border-color:#FF5B04;box-shadow:inset 0 0 0 1px #FF5B04">
+            <sc-if value="{{ phoneErr }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#FF5B04;font-size:13px;font-weight:700;line-height:1.6"><span class="t-ar">رقم جوال سعودي غير صحيح. مثال: 0501234567</span><span class="t-en">Enter a valid Saudi mobile number, e.g. 0501234567</span></span>
+            </sc-if>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <label style="font-weight:800;font-size:14px"><span class="t-ar">البريد الإلكتروني <span style="font-weight:400;color:#8A959B">(اختياري)</span></span><span class="t-en">Email <span style="font-weight:400;color:#8A959B">(optional)</span></span></label>
+          <input onInput="{{ onEmail }}" onBlur="{{ blurEmail }}" type="email" inputMode="email" autoComplete="email" placeholder="name@company.com" dir="ltr" style="font-family:'Cairo',sans-serif;font-size:15px;padding:14px 16px;border:1px solid #16232A;border-color:{{ emailBorder }};background:#ffffff;color:#16232A;width:100%;box-sizing:border-box;border-radius:0;text-align:start" style-focus="outline:none;border-color:#FF5B04;box-shadow:inset 0 0 0 1px #FF5B04">
+          <sc-if value="{{ emailErr }}" hint-placeholder-val="{{ false }}">
+            <span style="color:#FF5B04;font-size:13px;font-weight:700;line-height:1.6"><span class="t-ar">صيغة البريد الإلكتروني غير صحيحة.</span><span class="t-en">This email address is not valid.</span></span>
+          </sc-if>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label style="font-weight:800;font-size:14px"><span class="t-ar">نوع المعدة *</span><span class="t-en">Equipment type *</span></label>
+            <div style="position:relative;width:100%"><span style="position:absolute;inset-inline-end:18px;top:50%;width:8px;height:8px;border-inline-end:2px solid #16232A;border-block-end:2px solid #16232A;transform:translateY(-70%) rotate(45deg);pointer-events:none"></span><select onChange="{{ onEq }}" defaultValue="{{ eqDefault }}" style="font-family:'Cairo',sans-serif;font-size:15px;padding:14px 44px 14px 16px;padding-inline-start:16px;padding-inline-end:44px;border:1px solid #16232A;border-color:{{ eqBorder }};background:#ffffff;color:#16232A;width:100%;box-sizing:border-box;border-radius:0;cursor:pointer;appearance:none;-webkit-appearance:none" style-focus="outline:none;border-color:#FF5B04;box-shadow:inset 0 0 0 1px #FF5B04">
+              <option value="">اختر / Select</option>
+              <option value="Excavator">حفار (جنزير) / Excavator</option>
+              <option value="Backhoe Loader">لودر ظهري / Backhoe Loader</option>
+              <option value="Wheel Loader">لودر عجلي / Wheel Loader</option>
+              <option value="Telehandler">رافعة تلسكوبية / Telehandler</option>
+              <option value="Roller Compactor">مدحلة / Roller Compactor</option>
+              <option value="Skid Steer Loader">لودر انزلاقي / Skid Steer</option>
+              <option value="Other">أخرى / Other</option>
+            </select></div>
+            <sc-if value="{{ eqErr }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#FF5B04;font-size:13px;font-weight:700;line-height:1.6"><span class="t-ar">يرجى اختيار نوع المعدة.</span><span class="t-en">Please select an equipment type.</span></span>
+            </sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label style="font-weight:800;font-size:14px"><span class="t-ar">مدة الإيجار *</span><span class="t-en">Rental period *</span></label>
+            <div style="position:relative;width:100%"><span style="position:absolute;inset-inline-end:18px;top:50%;width:8px;height:8px;border-inline-end:2px solid #16232A;border-block-end:2px solid #16232A;transform:translateY(-70%) rotate(45deg);pointer-events:none"></span><select onChange="{{ onPeriod }}" style="font-family:'Cairo',sans-serif;font-size:15px;padding:14px 44px 14px 16px;padding-inline-start:16px;padding-inline-end:44px;border:1px solid #16232A;border-color:{{ periodBorder }};background:#ffffff;color:#16232A;width:100%;box-sizing:border-box;border-radius:0;cursor:pointer;appearance:none;-webkit-appearance:none" style-focus="outline:none;border-color:#FF5B04;box-shadow:inset 0 0 0 1px #FF5B04">
+              <option value="">اختر / Select</option>
+              <option value="Daily">يومي / Daily</option>
+              <option value="Weekly">أسبوعي / Weekly</option>
+              <option value="Monthly">شهري / Monthly</option>
+              <option value="Long-term">طويل الأمد / Long-term</option>
+            </select></div>
+            <sc-if value="{{ periodErr }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#FF5B04;font-size:13px;font-weight:700;line-height:1.6"><span class="t-ar">يرجى اختيار مدة الإيجار.</span><span class="t-en">Please select a rental period.</span></span>
+            </sc-if>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <label style="font-weight:800;font-size:14px"><span class="t-ar">موقع المشروع *</span><span class="t-en">Project location *</span></label>
+          <input onInput="{{ onLocation }}" onBlur="{{ blurLocation }}" type="text" placeholder="الدمام، حي الفيصلية / Dammam, Al Faisaliyah" style="font-family:'Cairo',sans-serif;font-size:15px;padding:14px 16px;border:1px solid #16232A;border-color:{{ locationBorder }};background:#ffffff;color:#16232A;width:100%;box-sizing:border-box;border-radius:0" style-focus="outline:none;border-color:#FF5B04;box-shadow:inset 0 0 0 1px #FF5B04">
+          <sc-if value="{{ locationErr }}" hint-placeholder-val="{{ false }}">
+            <span style="color:#FF5B04;font-size:13px;font-weight:700;line-height:1.6"><span class="t-ar">يرجى كتابة موقع المشروع (٣ أحرف على الأقل).</span><span class="t-en">Please enter the project location (at least 3 characters).</span></span>
+          </sc-if>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <label style="font-weight:800;font-size:14px"><span class="t-ar">تفاصيل الطلب <span style="font-weight:400;color:#8A959B">(اختياري)</span></span><span class="t-en">Enquiry details <span style="font-weight:400;color:#8A959B">(optional)</span></span></label>
+          <textarea onInput="{{ onNotes }}" rows="5" style="font-family:'Cairo',sans-serif;font-size:15px;padding:14px 16px;border:1px solid #16232A;background:#ffffff;color:#16232A;width:100%;box-sizing:border-box;border-radius:0;resize:vertical" style-focus="outline:none;border-color:#FF5B04;box-shadow:inset 0 0 0 1px #FF5B04"></textarea>
+        </div>
+        <sc-if value="{{ hasErr }}" hint-placeholder-val="{{ false }}">
+          <div style="color:#FF5B04;font-weight:700;font-size:14px"><span class="t-ar">يرجى تصحيح الحقول المعلمة بالأحمر قبل الإرسال.</span><span class="t-en">Please correct the fields marked in red before sending.</span></div>
+        </sc-if>
+        <sc-if value="{{ hasFail }}" hint-placeholder-val="{{ false }}">
+          <div style="color:#FF5B04;font-weight:700;font-size:14px;line-height:1.8"><span class="t-ar">تعذر إرسال الطلب. يرجى المحاولة مرة أخرى أو التواصل معنا عبر واتساب.</span><span class="t-en">We could not send your request. Please try again or reach us on WhatsApp.</span></div>
+        </sc-if>
+        <sc-if value="{{ isSent }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px solid #16232A;background:#E4EEF0;padding:28px;display:flex;flex-direction:column;gap:10px">
+            <div style="font-weight:800;font-size:14px;color:#FF5B04"><span class="t-ar">تم استلام طلبك</span><span class="t-en">REQUEST RECEIVED</span></div>
+            <p style="margin:0;font-size:15px;line-height:1.9;font-weight:600"><span class="t-ar">وصلنا طلبك وسنتواصل معك بعرض السعر ومدى التوفر خلال ساعات العمل.</span><span class="t-en">Your request has reached us. We will come back to you with pricing and availability within business hours.</span></p>
+          </div>
+        </sc-if>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <button onClick="{{ submitEmail }}" disabled="{{ isSending }}" style="display:{{ sendBtnDisplay }};font-family:'Cairo',sans-serif;background:#16232A;color:#ffffff;font-weight:800;font-size:15px;padding:15px 26px;line-height:1.5;border:1px solid #16232A;cursor:pointer;width:100%;box-sizing:border-box;transition:background 0.25s ease,color 0.25s ease" style-hover="background:#FF5B04;color:#16232A;border-color:#FF5B04">
+            <sc-if value="{{ notSending }}" hint-placeholder-val="{{ true }}">
+              <span class="t-ar">إرسال الطلب</span><span class="t-en">Send request</span>
+            </sc-if>
+            <sc-if value="{{ isSending }}" hint-placeholder-val="{{ false }}">
+              <span class="t-ar">جارٍ الإرسال…</span><span class="t-en">Sending…</span>
+            </sc-if>
+          </button>
+          <div style="display:{{ dividerDisplay }};align-items:center;gap:16px;color:#8A959B">
+            <span style="flex:1;height:1px;background:#C9CEC9;display:block"></span>
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.08em"><span class="t-ar">أو</span><span class="t-en">or</span></span>
+            <span style="flex:1;height:1px;background:#C9CEC9;display:block"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
+            <button onClick="{{ submitWA }}" style="font-family:'Cairo',sans-serif;background:transparent;color:#00A863;font-weight:700;font-size:15px;padding:14px 20px;line-height:1.5;border:1px solid #00A863;cursor:pointer;width:100%;box-sizing:border-box;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease" style-hover="background:#00D37F;color:#16232A;border-color:#00D37F">
+              <span class="t-ar">أرسل عبر واتساب</span><span class="t-en">Send via WhatsApp</span>
+            </button>
+            <a href="tel:+966538512342" style="border:1px solid #16232A;color:#16232A;font-weight:700;font-size:15px;padding:14px 20px;line-height:1.5;display:block;text-align:center;box-sizing:border-box;transition:background 0.25s ease,color 0.25s ease" style-hover="background:#16232A;color:#ffffff">
+              <span class="t-ar">اتصل مباشرة</span><span class="t-en">Call us</span>
+            </a>
+          </div>
+        </div>
+        <p style="margin:0;font-size:13px;color:#5B6B74;line-height:1.8">
+          <span class="t-ar">يصلنا طلبك مباشرة بعد الضغط على إرسال. ولإرفاق الملفات والمخططات استخدم واتساب.</span>
+          <span class="t-en">Your request reaches us directly once you hit send. To attach files or drawings, use WhatsApp.</span>
+        </p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#16232A;border:1px solid #16232A;position:sticky;top:96px">
+        <div style="background:#E4EEF0;padding:32px 28px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-weight:800;font-size:14px;color:#FF5B04"><span class="t-ar">الهاتف والبريد الإلكتروني</span><span class="t-en">PHONE AND EMAIL</span></div>
+          <a href="tel:+966538512342" dir="ltr" style="color:#16232A;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;text-align:start;width:max-content" style-hover="color:#FF5B04">+966 53 851 2342</a>
+          <a href="mailto:info@alphadvanced.com" dir="ltr" style="color:#16232A;font-size:14px;font-weight:700;text-align:start;width:max-content" style-hover="color:#FF5B04">info@alphadvanced.com</a>
+          <p style="margin:0;font-size:14px;color:#33424B;line-height:1.8"><span class="t-ar">ساعات العمل من السبت إلى الخميس، من 8:00 صباحاً إلى 5:00 مساءً</span><span class="t-en">Business hours: Saturday to Thursday, 8:00 AM to 5:00 PM</span></p>
+        </div>
+        <div style="background:#E4EEF0;padding:32px 28px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-weight:800;font-size:14px;color:#FF5B04"><span class="t-ar">العنوان</span><span class="t-en">ADDRESS</span></div>
+          <p style="margin:0;font-size:15px;line-height:1.9;font-weight:600">
+            <span class="t-ar">نوفوتيل بيزنس بارك، طريق الملك فهد،<br>الخالدية الشمالية، الدمام 32232</span>
+            <span class="t-en">Novotel Business Park, King Fahd Road,<br>Al Khalidiyah Ash Shamaliyah, Dammam 32232</span>
+          </p>
+          <a href="https://maps.google.com/?q=Novotel+Business+Park+King+Fahd+Road+Dammam" target="_blank" rel="noopener" style="margin-top:6px;display:flex;align-items:center;gap:14px;width:max-content;border:1px solid #16232A;color:#16232A;font-weight:800;font-size:14px;letter-spacing:0.04em;padding:8px 20px;line-height:1.5;transition:background 0.25s ease,color 0.25s ease" style-hover="background:#16232A;color:#ffffff;--axr:-8px;--axe:8px">
+            <span class="t-ar">احصل على الاتجاهات</span><span class="t-en">GET DIRECTIONS</span><svg class="t-ar" width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axr,0))"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axe,0))"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+          </a>
+        </div>
+        <div style="background:#E4EEF0;padding:32px 28px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-weight:800;font-size:14px;color:#FF5B04"><span class="t-ar">ماذا يحدث بعد الإرسال؟</span><span class="t-en">WHAT HAPPENS NEXT?</span></div>
+          <p style="margin:0;font-size:14px;color:#33424B;line-height:1.9">
+            <span class="t-ar">نراجع طلبك ونوافيك بعرض السعر ومدى التوفر خلال ساعات العمل. إذا كانت المعدة غير متوفرة نقترح البديل الأقرب أو نوفرها لك.</span>
+            <span class="t-en">We review your request and reply with pricing and availability during business hours. If a unit is unavailable, we suggest the closest alternative or source it for you.</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" data-hdr="dark" style="background:#075056;color:#ffffff">
+    <div style="max-width:1280px;margin:0 auto;padding:72px 24px 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <a href="Quote.dc.html" style="position:relative;display:block;height:230px;background:rgba(255,255,255,0.8);clip-path:polygon(0 0, 100% 0, 100% calc(100% - 92px), calc(100% - 92px) 100%, 0 100%)">
+        <span style="position:absolute;inset:1px;background-color:#075056;background-image:linear-gradient(#ffffff,#ffffff);background-repeat:no-repeat;background-position:bottom center;background-size:100% 0%;color:#ffffff;clip-path:polygon(0 0, 100% 0, 100% calc(100% - 91.5px), calc(100% - 91.5px) 100%, 0 100%);display:flex;flex-direction:column;justify-content:space-between;padding:30px 34px;transition:background-size 0.45s cubic-bezier(0.4,0,0.2,1),color 0.35s ease" style-hover="background-size:100% 100%;color:#075056;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+          <span style="line-height:1.25">
+            <span class="t-ar" style="font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem)">اطلب عرض سعر</span>
+            <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem)">GET A QUOTE</span>
+          </span>
+          <svg class="t-ar" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+        </span>
+      </a>
+      <a href="Contact.dc.html" style="position:relative;display:block;height:230px;background:rgba(255,255,255,0.8);clip-path:polygon(0 0, 100% 0, 100% calc(100% - 92px), calc(100% - 92px) 100%, 0 100%)">
+        <span style="position:absolute;inset:1px;background-color:#075056;background-image:linear-gradient(#ffffff,#ffffff);background-repeat:no-repeat;background-position:bottom center;background-size:100% 0%;color:#ffffff;clip-path:polygon(0 0, 100% 0, 100% calc(100% - 91.5px), calc(100% - 91.5px) 100%, 0 100%);display:flex;flex-direction:column;justify-content:space-between;padding:30px 34px;transition:background-size 0.45s cubic-bezier(0.4,0,0.2,1),color 0.35s ease" style-hover="background-size:100% 100%;color:#075056;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+          <span style="line-height:1.25">
+            <span class="t-ar" style="font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem)">تواصل معنا</span>
+            <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem)">GET IN TOUCH</span>
+          </span>
+          <svg class="t-ar" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+        </span>
+      </a>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:56px 24px 56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;align-items:start;justify-items:stretch">
+      <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+        <img src="assets/logos/logo-white.svg" alt="Alpha Advanced" style="height:24px;width:auto;display:block">
+        <p style="margin:0;font-size:14px;line-height:1.9;color:rgba(255,255,255,0.65);max-width:38ch;text-wrap:pretty">
+          <span class="t-ar">شركة ألفا المتطورة المحدودة لتأجير المعدات الثقيلة، الدمام، المملكة العربية السعودية.</span>
+          <span class="t-en">Alpha Advanced Limited, heavy equipment rental, Dammam, Saudi Arabia.</span>
+        </p>
+        <div style="display:flex;gap:18px;align-items:center;margin-top:4px">
+          <a href="https://www.linkedin.com/company/alpha-advanced/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z" fill-rule="evenodd"></path></svg></a>
+          <a href="https://www.instagram.com/alphaadvancedrentals/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0"></path></svg></a>
+          <a href="https://www.x.com/alpha_advanced" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="X"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M18.42,14.009L27.891,3h-2.244l-8.224,9.559L10.855,3H3.28l9.932,14.455L3.28,29h2.244l8.684-10.095,6.936,10.095h7.576l-10.301-14.991h0Zm-3.074,3.573l-1.006-1.439L6.333,4.69h3.447l6.462,9.243,1.006,1.439,8.4,12.015h-3.447l-6.854-9.804h0Z"></path></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61567134101332" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M16,2c-7.732,0-14,6.268-14,14,0,6.566,4.52,12.075,10.618,13.588v-9.31h-2.887v-4.278h2.887v-1.843c0-4.765,2.156-6.974,6.835-6.974,.887,0,2.417,.174,3.043,.348v3.878c-.33-.035-.904-.052-1.617-.052-2.296,0-3.183,.87-3.183,3.13v1.513h4.573l-.786,4.278h-3.787v9.619c6.932-.837,12.304-6.74,12.304-13.897,0-7.732-6.268-14-14-14Z"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <div style="color:#FF5B04;font-weight:800;font-size:12px"><span class="t-ar">الصفحات</span><span class="t-en">PAGES</span></div>
+        <a href="index.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:36px;align-items:flex-start">
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <div style="color:#FF5B04;font-weight:800;font-size:12px"><span class="t-ar">الموقع</span><span class="t-en">LOCATION</span></div>
+          <p style="margin:0;font-size:14px;font-weight:600;line-height:1.9;color:rgba(255,255,255,0.85)">
+            <span class="t-ar">نوفوتيل بيزنس بارك، طريق الملك فهد،<br>الخالدية الشمالية، الدمام 32232</span>
+            <span class="t-en">Novotel Business Park, King Fahd Road,<br>Al Khalidiyah Ash Shamaliyah, Dammam 32232</span>
+          </p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+          <div style="color:#FF5B04;font-weight:800;font-size:12px;margin-bottom:6px"><span class="t-ar">التواصل</span><span class="t-en">CONTACT</span></div>
+          <a href="tel:+966538512342" dir="ltr" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:start" style-hover="color:#FF5B04">+966 53 851 2342</a>
+          <a href="mailto:info@alphadvanced.com" dir="ltr" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;white-space:nowrap;text-align:start" style-hover="color:#FF5B04">info@alphadvanced.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px">
+      <div style="border-top:1px solid rgba(255,255,255,0.12);padding:22px 0;font-size:12.5px;color:rgba(255,255,255,0.55);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <span><span class="t-ar">© 2026 شركة ألفا المتطورة المحدودة. جميع الحقوق محفوظة.</span><span class="t-en">© 2026 Alpha Advanced Limited. All rights reserved.</span></span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;966538512342&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;التواصل&quot;},&quot;web3formsKey&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;التواصل&quot;},&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ar&quot;,&quot;en&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;اللغة&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, tone: 'light', bg: '#ffffff', narrow: false, menuOpen: false, err: false, status: 'idle', errs: {} };
+  _f = {};
+  componentDidMount() {
+    let saved = null;
+    try { saved = localStorage.getItem('alpha-lang'); } catch (e) {}
+    if (saved === 'ar' || saved === 'en') this.setState({ lang: saved });
+    try {
+      const eq = new URLSearchParams(window.location.search).get('eq');
+      if (eq) this._f.eq = eq;
+    } catch (e) {}
+    this._onScroll = () => {
+      const narrow = window.innerWidth < 900;
+      if (narrow !== this.state.narrow) this.setState({ narrow, menuOpen: false });
+      const y = window.scrollY || 0;
+      const last = this._lastY ?? 0;
+      let hidden = this.state.hidden || false;
+      if (y > last + 6 && y > 160) hidden = true;
+      else if (y < last - 6 || y <= 160) hidden = false;
+      this._lastY = y;
+      if (hidden !== this.state.hidden) this.setState({ hidden });
+      const probe = 36;
+      let tone = 'light';
+      let bg = '#ffffff';
+      document.querySelectorAll('[data-hdr]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= probe && r.bottom > probe) {
+          tone = el.getAttribute('data-hdr');
+          bg = el.hasAttribute('data-hdr-transparent') ? 'transparent' : this.bgOf(el);
+        }
+      });
+      if (tone !== this.state.tone || bg !== this.state.bg) this.setState({ tone, bg });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+  bgOf(node) {
+    let el = node;
+    while (el && el !== document.documentElement) {
+      const c = getComputedStyle(el).backgroundColor;
+      if (c && c !== 'transparent' && !/rgba\(\s*0,\s*0,\s*0,\s*0\s*\)/.test(c)) return c;
+      el = el.parentElement;
+    }
+    return '#ffffff';
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onScroll);
+  }
+  renderVals() {
+    const lang = this.state.lang || (this.props.defaultLang ?? 'en');
+    const dark = this.state.tone === 'dark';
+    const solidBg = (!this.state.bg || this.state.bg === 'transparent') ? '#16232A' : this.state.bg;
+    const menuOn = this.state.narrow && this.state.menuOpen;
+    const waBase = 'https://wa.me/' + (this.props.whatsappNumber ?? '966538512342');
+    let eqDefault = '';
+    try { eqDefault = new URLSearchParams(window.location.search).get('eq') || ''; } catch (e) {}
+    if (eqDefault && !this._f.eq) this._f.eq = eqDefault;
+    const store = (key) => (e) => {
+      this._f[key] = e.target.value;
+      if (this.state.errs && this.state.errs[key]) {
+        const next = Object.assign({}, this.state.errs);
+        delete next[key];
+        this.setState({ errs: next });
+      }
+    };
+    const norm = (v) => (v || '').replace(/[٠-٩]/g, d => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))).replace(/[٫،]/g, '').trim();
+    const checkField = (key) => {
+      const v = norm(this._f[key]);
+      if (key === 'name') return (v.length < 2 || !/[A-Za-z\u0600-\u06FF]/.test(v)) ? 'name' : null;
+      if (key === 'phone') {
+        const p = v.replace(/[\s\-().]/g, '');
+        return /^(?:\+?966|0)?5\d{8}$/.test(p) ? null : 'phone';
+      }
+      if (key === 'email') {
+        if (!v) return null;
+        return /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v) ? null : 'email';
+      }
+      if (key === 'location') return (v.length < 3 || !/[A-Za-z\u0600-\u06FF]/.test(v)) ? 'location' : null;
+      if (key === 'eq' || key === 'period') return v ? null : key;
+      return null;
+    };
+    const validateAll = () => {
+      const errs = {};
+      ['name', 'phone', 'email', 'eq', 'period', 'location'].forEach(k => { if (checkField(k)) errs[k] = true; });
+      return errs;
+    };
+    const blur = (key) => () => {
+      const bad = checkField(key);
+      const next = Object.assign({}, this.state.errs);
+      if (bad) next[key] = true; else delete next[key];
+      this.setState({ errs: next });
+    };
+    this._validateAll = validateAll;
+    const errs = this.state.errs || {};
+    const bad = '#FF5B04';
+    return {
+      blurName: blur('name'),
+      blurPhone: blur('phone'),
+      blurEmail: blur('email'),
+      blurLocation: blur('location'),
+      eqErr: !!errs.eq,
+      periodErr: !!errs.period,
+      eqBorder: errs.eq ? bad : '#16232A',
+      periodBorder: errs.period ? bad : '#16232A',
+      nameErr: !!errs.name,
+      phoneErr: !!errs.phone,
+      emailErr: !!errs.email,
+      locationErr: !!errs.location,
+      nameBorder: errs.name ? bad : '#16232A',
+      phoneBorder: errs.phone ? bad : '#16232A',
+      emailBorder: errs.email ? bad : '#16232A',
+      locationBorder: errs.location ? bad : '#16232A',
+      lang,
+      hdrColor: dark ? '#ffffff' : '#16232A',
+      hdrBg: menuOn ? solidBg : (this.state.bg || '#ffffff'),
+      navDisplay: this.state.narrow ? 'none' : 'flex',
+      ctaDisplay: this.state.narrow ? 'none' : 'inline-block',
+      burgerDisplay: this.state.narrow ? 'flex' : 'none',
+      burgerTop: this.state.menuOpen ? 'translateY(7px) rotate(45deg)' : 'none',
+      burgerBot: this.state.menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
+      burgerMidOp: this.state.menuOpen ? 0 : 1,
+      menuDisplay: this.state.narrow && this.state.menuOpen ? 'flex' : 'none',
+      panelBg: solidBg,
+      panelColor: (!this.state.bg || this.state.bg === 'transparent') ? '#ffffff' : (dark ? '#ffffff' : '#16232A'),
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      hdrY: this.state.hidden ? '-110%' : '0%',
+      logoNavyOp: dark ? 0 : 1,
+      logoWhiteOp: dark ? 1 : 0,
+      toggleLang: () => {
+        const next = lang === 'ar' ? 'en' : 'ar';
+        try { localStorage.setItem('alpha-lang', next); } catch (e) {}
+        this.setState({ lang: next });
+      },
+      wa: waBase,
+      eqDefault,
+      hasErr: this.state.err,
+      onName: store('name'),
+      onPhone: store('phone'),
+      onEmail: store('email'),
+      onEq: store('eq'),
+      onPeriod: store('period'),
+      onLocation: store('location'),
+      onNotes: store('notes'),
+      sendBtnDisplay: this.state.status === 'sent' ? 'none' : 'block',
+      dividerDisplay: this.state.status === 'sent' ? 'none' : 'flex',
+      isSending: this.state.status === 'sending',
+      notSending: this.state.status !== 'sending',
+      isSent: this.state.status === 'sent',
+      notSent: this.state.status !== 'sent',
+      hasFail: this.state.status === 'fail',
+      submitEmail: () => {
+        const f = this._f;
+        const bad = validateAll();
+        if (Object.keys(bad).length) { this.setState({ errs: bad, err: true, status: 'idle' }); return; }
+        if (this.state.err) this.setState({ err: false });
+        const lines = [
+          'الاسم / Name: ' + f.name,
+          'الجوال / Phone: ' + f.phone
+        ];
+        if (f.email) lines.push('البريد الإلكتروني / Email: ' + f.email);
+        if (f.eq) lines.push('المعدة / Equipment: ' + f.eq);
+        if (f.period) lines.push('المدة / Period: ' + f.period);
+        if (f.location) lines.push('موقع المشروع / Location: ' + f.location);
+        if (f.notes) lines.push('تفاصيل / Notes: ' + f.notes);
+        const subject = 'طلب عرض سعر / Quote request' + (f.eq ? ': ' + f.eq : '');
+        const key = (this.props.web3formsKey || '').trim();
+        if (!key) {
+          window.location.href = 'mailto:info@alphadvanced.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+          return;
+        }
+        this.setState({ status: 'sending' });
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: key,
+            subject: subject,
+            from_name: 'موقع ألفا / طلب عرض سعر',
+            'الاسم': f.name,
+            'الجوال': f.phone,
+            'البريد الإلكتروني': f.email || '—',
+            'المعدة': f.eq || '—',
+            'المدة': f.period || '—',
+            'موقع المشروع': f.location || '—',
+            'تفاصيل الطلب': f.notes || '—',
+            replyto: f.email || ''
+          })
+        })
+          .then(r => r.json())
+          .then(d => this.setState({ status: d && d.success ? 'sent' : 'fail' }))
+          .catch(() => this.setState({ status: 'fail' }));
+      },
+      submitWA: () => {
+        const f = this._f;
+        const bad = validateAll();
+        if (Object.keys(bad).length) { this.setState({ errs: bad, err: true }); return; }
+        if (this.state.err) this.setState({ err: false });
+        const lines = [
+          'طلب عرض سعر / Quote request',
+          'الاسم / Name: ' + f.name,
+          'الجوال / Phone: ' + f.phone
+        ];
+        if (f.email) lines.push('البريد الإلكتروني / Email: ' + f.email);
+        if (f.eq) lines.push('المعدة / Equipment: ' + f.eq);
+        if (f.period) lines.push('المدة / Period: ' + f.period);
+        if (f.location) lines.push('موقع المشروع / Location: ' + f.location);
+        if (f.notes) lines.push('تفاصيل / Notes: ' + f.notes);
+        window.open(waBase + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

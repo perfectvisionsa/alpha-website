@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>المعدات | ألفا المتطورة</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap">
+  <style>
+    @font-face{font-family:'Bulletproof';src:url('assets/fonts/BulletproofBB.ttf') format('truetype');font-display:swap}
+    html,body{margin:0;padding:0;background:#ffffff;color:#16232A}
+    body{font-family:'Cairo',sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:#16232A;text-decoration:none}
+    a:hover{color:#FF5B04}
+    .site{direction:rtl}
+    .site[data-lang="en"]{direction:ltr}
+    .t-en{display:none !important}
+    .site[data-lang="en"] .t-en{display:revert !important}
+    .site[data-lang="en"] .t-ar{display:none !important}
+    @media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}
+  </style>
+  <script src="image-slot.js"></script>
+</helmet>
+<div class="site" data-lang="{{ lang }}" style="background:#ffffff;color:#16232A;min-height:100vh">
+
+  <header data-screen-label="Header" style="position:fixed;top:0;left:0;right:0;z-index:50;background:{{ hdrBg }};color:{{ hdrColor }};transform:translateY({{ hdrY }});transition:background-color 0.45s cubic-bezier(0.25,0.46,0.45,0.94),color 0.45s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)">
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;flex-wrap:wrap">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+        <span style="position:relative;display:block;height:24px">
+          <img src="assets/logos/logo-teal.svg" alt="Alpha Advanced" style="height:24px;display:block;opacity:{{ logoNavyOp }};transition:opacity 0.45s ease">
+          <img src="assets/logos/logo-white.svg" alt="" style="height:24px;display:block;position:absolute;top:0;inset-inline-start:0;opacity:{{ logoWhiteOp }};transition:opacity 0.45s ease">
+        </span>
+      </a>
+      <nav style="display:{{ navDisplay }};align-items:center;gap:28px;font-size:15px;font-weight:600;flex-wrap:wrap">
+        <a href="index.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:inherit;border-bottom:2px solid #FF5B04;padding-bottom:2px" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button onClick="{{ toggleLang }}" style="font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;border:1px solid currentColor;background:transparent;color:inherit;width:48px;height:30px;box-sizing:border-box;padding:0;line-height:1.4;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="color:#FF5B04">
+          <span class="t-ar">EN</span><span class="t-en">عربي</span>
+        </button>
+        <a href="Quote.dc.html" style="background:#FF5B04;color:#16232A;font-size:13px;font-weight:800;padding:6px 18px;line-height:1.4;display:{{ ctaDisplay }};transition:background 0.25s ease,color 0.25s ease" style-hover="background:#ffffff;color:#16232A">
+          <span class="t-ar">اطلب عرض سعر</span><span class="t-en">Get a Quote</span>
+        </a>
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:{{ burgerDisplay }};flex-direction:column;align-items:center;justify-content:center;gap:4px;width:48px;height:30px;box-sizing:border-box;padding:0;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer">
+          <span style="display:block;width:16px;height:2px;background:currentColor;transform:{{ burgerTop }};transition:transform .3s cubic-bezier(.2,.8,.2,1)"></span>
+          <span style="display:block;width:16px;height:2px;background:currentColor;opacity:{{ burgerMidOp }};transition:opacity .2s ease"></span>
+          <span style="display:block;width:16px;height:2px;background:currentColor;transform:{{ burgerBot }};transition:transform .3s cubic-bezier(.2,.8,.2,1)"></span>
+        </button>
+      </div>
+    </div>
+    <div style="display:{{ menuDisplay }};flex-direction:column;background:{{ panelBg }};color:{{ panelColor }};border-top:1px solid rgba(128,140,145,0.35)">
+      <div style="max-width:1280px;margin:0 auto;width:100%;box-sizing:border-box;padding:0 24px 24px;display:flex;flex-direction:column">
+        <a href="index.html" style="color:inherit;padding:16px 0;font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+        <a href="Quote.dc.html" style="margin-top:20px;background:#FF5B04;color:#16232A;font-size:15px;font-weight:800;padding:14px 18px;line-height:1.4;display:block;text-align:center" style-hover="background:#ffffff;color:#16232A">
+          <span class="t-ar">اطلب عرض سعر</span><span class="t-en">Get a Quote</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <section data-screen-label="Page Title" data-hdr="dark" data-hdr-transparent style="position:relative;background:#16232A;color:#ffffff;border-bottom:1px solid #16232A;overflow:hidden">
+    <img src="assets/heroes/equipment-hero.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(22,35,42,0.82),rgba(22,35,42,0.35))"></div>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:160px 24px 64px;display:flex;flex-direction:column;gap:20px">
+      <h1 style="margin:0;line-height:1.05;font-size:clamp(3.2rem,8vw,6rem)">
+        <span class="t-ar" style="font-weight:900">المعدات</span>
+        <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-weight:400">EQUIPMENT</span>
+      </h1>
+      <p style="margin:0;font-size:17px;line-height:1.8;color:rgba(255,255,255,0.85);text-wrap:pretty">
+        <span class="t-ar">ست معدات أساسية تغطي أعمال الحفر والتسوية والرفع والدك. اختر المعدة وأرسل طلبك عبر واتساب، ونوافيك بعرض السعر ومدى التوفر.</span>
+        <span class="t-en">Six core machines covering excavation, grading, lifting and compaction. Pick a machine, send your request on WhatsApp, and we reply with pricing and availability.</span>
+      </p>
+    </div>
+  </section>
+
+  <section data-screen-label="Catalog" data-hdr="light" style="border-bottom:1px solid #16232A">
+    <div style="max-width:1280px;margin:0 auto;padding:88px 24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+        <div data-anim-item style="position:relative;border:1px solid #C9CEC9;background:#ffffff;display:flex;flex-direction:column;transition:border-color .18s ease;clip-path:polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)" style-hover="border-color:#16232A;--bc:#16232A" style-after="content:'';position:absolute;top:0;left:calc(100% - 30px);width:42.5px;height:1px;background:var(--bc,#C9CEC9);transform:rotate(45deg);transform-origin:0 0">
+          <div style="position:relative;aspect-ratio:16/9;min-height:0;overflow:hidden;background:#F2F3F2"><img src="assets/equipment/eq-excavator.webp" alt="Excavator" style="position:absolute;left:54.76%;top:54.03%;width:126.33%;height:149.91%;transform:translate(-50%,-50%);max-width:none"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:20px;flex:1">
+            <div>
+              <div style="font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:900;line-height:1.3"><span class="t-ar">حفار (جنزير)</span><span class="t-en">Excavator</span></div>
+              <div style="font-size:13px;color:#5B6B74;font-weight:600;margin-top:4px"><span class="t-ar">Excavator</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #E4E7E4;padding-top:14px">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12.5px;line-height:1.5;align-items:baseline">
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">السعة</span><span class="t-en">Capacity</span></span>
+                <span style="font-weight:700;color:#16232A"><span style="color:#A9B2B7">—</span></span>
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">الملحقات</span><span class="t-en">Attachments</span></span>
+                <span style="font-weight:700;color:#16232A"><span class="t-ar">كسارة صخور، جرافة بالمقاس المطلوب</span><span class="t-en">Rock breaker, bucket to size</span></span>
+              </div>
+            </div>
+            <a href="Quote.dc.html?eq=Excavator" style="margin-top:auto;display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--axr:-8px;--axe:8px"><span class="t-ar">اطلب عرض سعر</span><span class="t-en">REQUEST A QUOTE</span><svg class="t-ar" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axr,0))"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axe,0))"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg></a>
+          </div>
+        </div>
+        <div data-anim-item style="position:relative;border:1px solid #C9CEC9;background:#ffffff;display:flex;flex-direction:column;transition:border-color .18s ease;clip-path:polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)" style-hover="border-color:#16232A;--bc:#16232A" style-after="content:'';position:absolute;top:0;left:calc(100% - 30px);width:42.5px;height:1px;background:var(--bc,#C9CEC9);transform:rotate(45deg);transform-origin:0 0">
+          <div style="position:relative;aspect-ratio:16/9;min-height:0;overflow:hidden;background:#F2F3F2"><img src="assets/equipment/eq-backhoe.webp" alt="Backhoe Loader" style="position:absolute;left:50.00%;top:46.86%;width:100.00%;height:118.61%;transform:translate(-50%,-50%);max-width:none"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:20px;flex:1">
+            <div>
+              <div style="font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:900;line-height:1.3"><span class="t-ar">باكهو لودر</span><span class="t-en">Backhoe Loader</span></div>
+              <div style="font-size:13px;color:#5B6B74;font-weight:600;margin-top:4px"><span class="t-ar">Backhoe Loader</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #E4E7E4;padding-top:14px">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12.5px;line-height:1.5;align-items:baseline">
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">السعة</span><span class="t-en">Capacity</span></span>
+                <span style="font-weight:700;color:#16232A"><span style="color:#A9B2B7">—</span></span>
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">الملحقات</span><span class="t-en">Attachments</span></span>
+                <span style="font-weight:700;color:#16232A"><span class="t-ar">مثقاب، كسارة صخور</span><span class="t-en">Auger, rock breaker</span></span>
+              </div>
+            </div>
+            <a href="Quote.dc.html?eq=Backhoe%20Loader" style="margin-top:auto;display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--axr:-8px;--axe:8px"><span class="t-ar">اطلب عرض سعر</span><span class="t-en">REQUEST A QUOTE</span><svg class="t-ar" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axr,0))"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axe,0))"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg></a>
+          </div>
+        </div>
+        <div data-anim-item style="position:relative;border:1px solid #C9CEC9;background:#ffffff;display:flex;flex-direction:column;transition:border-color .18s ease;clip-path:polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)" style-hover="border-color:#16232A;--bc:#16232A" style-after="content:'';position:absolute;top:0;left:calc(100% - 30px);width:42.5px;height:1px;background:var(--bc,#C9CEC9);transform:rotate(45deg);transform-origin:0 0">
+          <div style="position:relative;aspect-ratio:16/9;min-height:0;overflow:hidden;background:#F2F3F2"><img src="assets/equipment/eq-wheel-loader.webp" alt="Wheel Loader" style="position:absolute;left:50.00%;top:56.03%;width:100.00%;height:124.71%;transform:translate(-50%,-50%);max-width:none"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:20px;flex:1">
+            <div>
+              <div style="font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:900;line-height:1.3"><span class="t-ar">شيول</span><span class="t-en">Wheel Loader</span></div>
+              <div style="font-size:13px;color:#5B6B74;font-weight:600;margin-top:4px"><span class="t-ar">Wheel Loader</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #E4E7E4;padding-top:14px">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12.5px;line-height:1.5;align-items:baseline">
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">السعة</span><span class="t-en">Capacity</span></span>
+                <span style="font-weight:700;color:#16232A"><span style="color:#A9B2B7">—</span></span>
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">الملحقات</span><span class="t-en">Attachments</span></span>
+                <span style="font-weight:700;color:#16232A"><span class="t-ar">شوكة</span><span class="t-en">Fork</span></span>
+              </div>
+            </div>
+            <a href="Quote.dc.html?eq=Wheel%20Loader" style="margin-top:auto;display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--axr:-8px;--axe:8px"><span class="t-ar">اطلب عرض سعر</span><span class="t-en">REQUEST A QUOTE</span><svg class="t-ar" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axr,0))"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axe,0))"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg></a>
+          </div>
+        </div>
+        <div data-anim-item style="position:relative;border:1px solid #C9CEC9;background:#ffffff;display:flex;flex-direction:column;transition:border-color .18s ease;clip-path:polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)" style-hover="border-color:#16232A;--bc:#16232A" style-after="content:'';position:absolute;top:0;left:calc(100% - 30px);width:42.5px;height:1px;background:var(--bc,#C9CEC9);transform:rotate(45deg);transform-origin:0 0">
+          <div style="position:relative;aspect-ratio:16/9;min-height:0;overflow:hidden;background:#F2F3F2"><img src="assets/equipment/eq-telehandler.webp" alt="Telehandler" style="position:absolute;left:50.00%;top:47.96%;width:100.00%;height:118.67%;transform:translate(-50%,-50%);max-width:none"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:20px;flex:1">
+            <div>
+              <div style="font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:900;line-height:1.3"><span class="t-ar">رافعة تلسكوبية</span><span class="t-en">Telehandler</span></div>
+              <div style="font-size:13px;color:#5B6B74;font-weight:600;margin-top:4px"><span class="t-ar">Telehandler</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #E4E7E4;padding-top:14px">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12.5px;line-height:1.5;align-items:baseline">
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">السعة</span><span class="t-en">Capacity</span></span>
+                <span style="font-weight:700;color:#16232A"><span style="color:#A9B2B7">—</span></span>
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">الملحقات</span><span class="t-en">Attachments</span></span>
+                <span style="font-weight:700;color:#16232A"><span class="t-ar">جرافة وشوك</span><span class="t-en">Bucket & forks</span></span>
+              </div>
+            </div>
+            <a href="Quote.dc.html?eq=Telehandler" style="margin-top:auto;display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--axr:-8px;--axe:8px"><span class="t-ar">اطلب عرض سعر</span><span class="t-en">REQUEST A QUOTE</span><svg class="t-ar" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axr,0))"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axe,0))"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg></a>
+          </div>
+        </div>
+        <div data-anim-item style="position:relative;border:1px solid #C9CEC9;background:#ffffff;display:flex;flex-direction:column;transition:border-color .18s ease;clip-path:polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)" style-hover="border-color:#16232A;--bc:#16232A" style-after="content:'';position:absolute;top:0;left:calc(100% - 30px);width:42.5px;height:1px;background:var(--bc,#C9CEC9);transform:rotate(45deg);transform-origin:0 0">
+          <div style="position:relative;aspect-ratio:16/9;min-height:0;overflow:hidden;background:#F2F3F2"><img src="assets/equipment/eq-roller.webp" alt="Roller Compactor" style="position:absolute;left:50.00%;top:48.23%;width:100.00%;height:118.22%;transform:translate(-50%,-50%);max-width:none"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:20px;flex:1">
+            <div>
+              <div style="font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:900;line-height:1.3"><span class="t-ar">مدحلة (رصاصة)</span><span class="t-en">Roller Compactor</span></div>
+              <div style="font-size:13px;color:#5B6B74;font-weight:600;margin-top:4px"><span class="t-ar">Roller Compactor</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #E4E7E4;padding-top:14px">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12.5px;line-height:1.5;align-items:baseline">
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">السعة</span><span class="t-en">Capacity</span></span>
+                <span style="font-weight:700;color:#16232A"><span class="t-ar">12 طن</span><span class="t-en">12 ton</span></span>
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">الملحقات</span><span class="t-en">Attachments</span></span>
+                <span style="font-weight:700;color:#16232A"><span style="color:#A9B2B7">—</span></span>
+              </div>
+            </div>
+            <a href="Quote.dc.html?eq=Roller%20Compactor" style="margin-top:auto;display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--axr:-8px;--axe:8px"><span class="t-ar">اطلب عرض سعر</span><span class="t-en">REQUEST A QUOTE</span><svg class="t-ar" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axr,0))"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axe,0))"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg></a>
+          </div>
+        </div>
+        <div data-anim-item style="position:relative;border:1px solid #C9CEC9;background:#ffffff;display:flex;flex-direction:column;transition:border-color .18s ease;clip-path:polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)" style-hover="border-color:#16232A;--bc:#16232A" style-after="content:'';position:absolute;top:0;left:calc(100% - 30px);width:42.5px;height:1px;background:var(--bc,#C9CEC9);transform:rotate(45deg);transform-origin:0 0">
+          <div style="position:relative;aspect-ratio:16/9;min-height:0;overflow:hidden;background:#F2F3F2"><img src="assets/equipment/eq-skid-steer.webp" alt="Skid Steer Loader" style="position:absolute;left:42.31%;top:49.06%;width:128.61%;height:142.82%;transform:translate(-50%,-50%);max-width:none"></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:20px;flex:1">
+            <div>
+              <div style="font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:900;line-height:1.3"><span class="t-ar">بوبكات</span><span class="t-en">Skid Steer Loader</span></div>
+              <div style="font-size:13px;color:#5B6B74;font-weight:600;margin-top:4px"><span class="t-ar">Skid Steer Loader</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #E4E7E4;padding-top:14px">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12.5px;line-height:1.5;align-items:baseline">
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">السعة</span><span class="t-en">Capacity</span></span>
+                <span style="font-weight:700;color:#16232A"><span style="color:#A9B2B7">—</span></span>
+                <span style="color:#8A959B;font-weight:700;white-space:nowrap"><span class="t-ar">الملحقات</span><span class="t-en">Attachments</span></span>
+                <span style="font-weight:700;color:#16232A"><span class="t-ar">مثقاب، فرشاة تنظيف</span><span class="t-en">Auger, cleaning brush</span></span>
+              </div>
+            </div>
+            <a href="Quote.dc.html?eq=Skid%20Steer%20Loader" style="margin-top:auto;display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--axr:-8px;--axe:8px"><span class="t-ar">اطلب عرض سعر</span><span class="t-en">REQUEST A QUOTE</span><svg class="t-ar" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axr,0))"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" width="18" height="18" viewBox="0 0 24 24" fill="none" style="transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translateX(var(--axe,0))"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <footer data-screen-label="Footer" data-hdr="dark" style="background:#075056;color:#ffffff">
+    <div style="max-width:1280px;margin:0 auto;padding:72px 24px 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <a href="Quote.dc.html" style="position:relative;display:block;height:230px;background:rgba(255,255,255,0.8);clip-path:polygon(0 0, 100% 0, 100% calc(100% - 92px), calc(100% - 92px) 100%, 0 100%)">
+        <span style="position:absolute;inset:1px;background-color:#075056;background-image:linear-gradient(#ffffff,#ffffff);background-repeat:no-repeat;background-position:bottom center;background-size:100% 0%;color:#ffffff;clip-path:polygon(0 0, 100% 0, 100% calc(100% - 91.5px), calc(100% - 91.5px) 100%, 0 100%);display:flex;flex-direction:column;justify-content:space-between;padding:30px 34px;transition:background-size 0.45s cubic-bezier(0.4,0,0.2,1),color 0.35s ease" style-hover="background-size:100% 100%;color:#075056;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+          <span style="line-height:1.25">
+            <span class="t-ar" style="font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem)">اطلب عرض سعر</span>
+            <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem)">GET A QUOTE</span>
+          </span>
+          <svg class="t-ar" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+        </span>
+      </a>
+      <a href="Contact.dc.html" style="position:relative;display:block;height:230px;background:rgba(255,255,255,0.8);clip-path:polygon(0 0, 100% 0, 100% calc(100% - 92px), calc(100% - 92px) 100%, 0 100%)">
+        <span style="position:absolute;inset:1px;background-color:#075056;background-image:linear-gradient(#ffffff,#ffffff);background-repeat:no-repeat;background-position:bottom center;background-size:100% 0%;color:#ffffff;clip-path:polygon(0 0, 100% 0, 100% calc(100% - 91.5px), calc(100% - 91.5px) 100%, 0 100%);display:flex;flex-direction:column;justify-content:space-between;padding:30px 34px;transition:background-size 0.45s cubic-bezier(0.4,0,0.2,1),color 0.35s ease" style-hover="background-size:100% 100%;color:#075056;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+          <span style="line-height:1.25">
+            <span class="t-ar" style="font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem)">تواصل معنا</span>
+            <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem)">GET IN TOUCH</span>
+          </span>
+          <svg class="t-ar" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+        </span>
+      </a>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:56px 24px 56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;align-items:start;justify-items:stretch">
+      <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+        <img src="assets/logos/logo-white.svg" alt="Alpha Advanced" style="height:24px;width:auto;display:block">
+        <p style="margin:0;font-size:14px;line-height:1.9;color:rgba(255,255,255,0.65);max-width:38ch;text-wrap:pretty">
+          <span class="t-ar">شركة ألفا المتطورة المحدودة لتأجير المعدات الثقيلة، الدمام، المملكة العربية السعودية.</span>
+          <span class="t-en">Alpha Advanced Limited, heavy equipment rental, Dammam, Saudi Arabia.</span>
+        </p>
+        <div style="display:flex;gap:18px;align-items:center;margin-top:4px">
+          <a href="https://www.linkedin.com/company/alpha-advanced/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z" fill-rule="evenodd"></path></svg></a>
+          <a href="https://www.instagram.com/alphaadvancedrentals/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0"></path></svg></a>
+          <a href="https://www.x.com/alpha_advanced" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="X"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M18.42,14.009L27.891,3h-2.244l-8.224,9.559L10.855,3H3.28l9.932,14.455L3.28,29h2.244l8.684-10.095,6.936,10.095h7.576l-10.301-14.991h0Zm-3.074,3.573l-1.006-1.439L6.333,4.69h3.447l6.462,9.243,1.006,1.439,8.4,12.015h-3.447l-6.854-9.804h0Z"></path></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61567134101332" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M16,2c-7.732,0-14,6.268-14,14,0,6.566,4.52,12.075,10.618,13.588v-9.31h-2.887v-4.278h2.887v-1.843c0-4.765,2.156-6.974,6.835-6.974,.887,0,2.417,.174,3.043,.348v3.878c-.33-.035-.904-.052-1.617-.052-2.296,0-3.183,.87-3.183,3.13v1.513h4.573l-.786,4.278h-3.787v9.619c6.932-.837,12.304-6.74,12.304-13.897,0-7.732-6.268-14-14-14Z"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <div style="color:#FF5B04;font-weight:800;font-size:12px"><span class="t-ar">الصفحات</span><span class="t-en">PAGES</span></div>
+        <a href="index.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:36px;align-items:flex-start">
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <div style="color:#FF5B04;font-weight:800;font-size:12px"><span class="t-ar">الموقع</span><span class="t-en">LOCATION</span></div>
+          <p style="margin:0;font-size:14px;font-weight:600;line-height:1.9;color:rgba(255,255,255,0.85)">
+            <span class="t-ar">نوفوتيل بيزنس بارك، طريق الملك فهد،<br>الخالدية الشمالية، الدمام 32232</span>
+            <span class="t-en">Novotel Business Park, King Fahd Road,<br>Al Khalidiyah Ash Shamaliyah, Dammam 32232</span>
+          </p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+          <div style="color:#FF5B04;font-weight:800;font-size:12px;margin-bottom:6px"><span class="t-ar">التواصل</span><span class="t-en">CONTACT</span></div>
+          <a href="tel:+966538512342" dir="ltr" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:start" style-hover="color:#FF5B04">+966 53 851 2342</a>
+          <a href="mailto:info@alphadvanced.com" dir="ltr" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;white-space:nowrap;text-align:start" style-hover="color:#FF5B04">info@alphadvanced.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px">
+      <div style="border-top:1px solid rgba(255,255,255,0.12);padding:22px 0;font-size:12.5px;color:rgba(255,255,255,0.55);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <span><span class="t-ar">© 2026 شركة ألفا المتطورة المحدودة. جميع الحقوق محفوظة.</span><span class="t-en">© 2026 Alpha Advanced Limited. All rights reserved.</span></span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;966538512342&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;التواصل&quot;},&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ar&quot;,&quot;en&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;اللغة&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, tone: 'light', bg: '#ffffff', narrow: false, menuOpen: false, atTop: true };
+  componentDidMount() {
+    let saved = null;
+    try { saved = localStorage.getItem('alpha-lang'); } catch (e) {}
+    if (saved === 'ar' || saved === 'en') this.setState({ lang: saved });
+    this._onScroll = () => {
+      const narrow = window.innerWidth < 900;
+      if (narrow !== this.state.narrow) this.setState({ narrow, menuOpen: false });
+      const y = window.scrollY || 0;
+      const last = this._lastY ?? 0;
+      const locked = this._lockUntil && Date.now() < this._lockUntil;
+      let hidden = this.state.hidden || false;
+      if (!locked) {
+        if (y > last + 6 && y > 160) hidden = true;
+        else if (y < last - 6 || y <= 160) hidden = false;
+      } else if (y > 160) {
+        hidden = true;
+      }
+      this._lastY = y;
+      const atTop = y < 220;
+      if (atTop !== this.state.atTop) this.setState({ atTop });
+      if (hidden !== this.state.hidden) this.setState({ hidden });
+      const probe = 36;
+      let tone = 'light';
+      let bg = '#ffffff';
+      document.querySelectorAll('[data-hdr]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= probe && r.bottom > probe) {
+          tone = el.getAttribute('data-hdr');
+          bg = el.hasAttribute('data-hdr-transparent') ? 'transparent' : this.bgOf(el);
+        }
+      });
+      if (tone !== this.state.tone || bg !== this.state.bg) this.setState({ tone, bg });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+  bgOf(node) {
+    let el = node;
+    while (el && el !== document.documentElement) {
+      const c = getComputedStyle(el).backgroundColor;
+      if (c && c !== 'transparent' && !/rgba\(\s*0,\s*0,\s*0,\s*0\s*\)/.test(c)) return c;
+      el = el.parentElement;
+    }
+    return '#ffffff';
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onScroll);
+  }
+  renderVals() {
+    const lang = this.state.lang || (this.props.defaultLang ?? 'en');
+    const dark = this.state.tone === 'dark';
+    const solidBg = (!this.state.bg || this.state.bg === 'transparent') ? '#16232A' : this.state.bg;
+    const menuOn = this.state.narrow && this.state.menuOpen;
+    return {
+      lang,
+      hdrColor: dark ? '#ffffff' : '#16232A',
+      hdrBg: menuOn ? solidBg : (this.state.bg || '#ffffff'),
+      navDisplay: this.state.narrow ? 'none' : 'flex',
+      ctaDisplay: this.state.narrow ? 'none' : 'inline-block',
+      burgerDisplay: this.state.narrow ? 'flex' : 'none',
+      burgerTop: this.state.menuOpen ? 'translateY(7px) rotate(45deg)' : 'none',
+      burgerBot: this.state.menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
+      burgerMidOp: this.state.menuOpen ? 0 : 1,
+      menuDisplay: this.state.narrow && this.state.menuOpen ? 'flex' : 'none',
+      panelBg: solidBg,
+      panelColor: (!this.state.bg || this.state.bg === 'transparent') ? '#ffffff' : (dark ? '#ffffff' : '#16232A'),
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      lockHeader: () => { this._lockUntil = Date.now() + 1200; },
+      chipsTop: this.state.hidden ? '0px' : '72px',
+      chipsY: this.state.atTop ? '-110%' : '0%',
+      chipsOp: this.state.atTop ? 0 : 1,
+      hdrY: this.state.hidden ? '-110%' : '0%',
+      logoNavyOp: dark ? 0 : 1,
+      logoWhiteOp: dark ? 1 : 0,
+      toggleLang: () => {
+        const next = lang === 'ar' ? 'en' : 'ar';
+        try { localStorage.setItem('alpha-lang', next); } catch (e) {}
+        this.setState({ lang: next });
+      },
+      wa: 'https://wa.me/' + (this.props.whatsappNumber ?? '966538512342')
+    };
+  }
+}
+</script>
+</body>
+</html>

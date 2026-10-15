@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>اتصل بنا | ألفا المتطورة</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&amp;display=swap">
+  <style>
+    @font-face{font-family:'Bulletproof';src:url('assets/fonts/BulletproofBB.ttf') format('truetype');font-display:swap}
+    html,body{margin:0;padding:0;background:#ffffff;color:#16232A}
+    body{font-family:'Cairo',sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:#16232A;text-decoration:none}
+    a:hover{color:#FF5B04}
+    .site{direction:rtl}
+    .site[data-lang="en"]{direction:ltr}
+    .t-en{display:none !important}
+    .site[data-lang="en"] .t-en{display:revert !important}
+    .site[data-lang="en"] .t-ar{display:none !important}
+    @media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}
+  </style>
+</helmet>
+<div class="site" data-lang="{{ lang }}" style="background:#ffffff;color:#16232A;min-height:100vh">
+
+  <header data-screen-label="Header" style="position:fixed;top:0;left:0;right:0;z-index:50;background:{{ hdrBg }};color:{{ hdrColor }};transform:translateY({{ hdrY }});transition:background-color 0.45s cubic-bezier(0.25,0.46,0.45,0.94),color 0.45s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)">
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;flex-wrap:wrap">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+        <span style="position:relative;display:block;height:24px">
+          <img src="assets/logos/logo-teal.svg" alt="Alpha Advanced" style="height:24px;display:block;opacity:{{ logoNavyOp }};transition:opacity 0.45s ease">
+          <img src="assets/logos/logo-white.svg" alt="" style="height:24px;display:block;position:absolute;top:0;inset-inline-start:0;opacity:{{ logoWhiteOp }};transition:opacity 0.45s ease">
+        </span>
+      </a>
+      <nav style="display:{{ navDisplay }};align-items:center;gap:28px;font-size:15px;font-weight:600;flex-wrap:wrap">
+        <a href="index.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:inherit" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:inherit;border-bottom:2px solid #FF5B04;padding-bottom:2px" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button onClick="{{ toggleLang }}" style="font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;border:1px solid currentColor;background:transparent;color:inherit;width:48px;height:30px;box-sizing:border-box;padding:0;line-height:1.4;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="color:#FF5B04">
+          <span class="t-ar">EN</span><span class="t-en">عربي</span>
+        </button>
+        <a href="Quote.dc.html" style="background:#FF5B04;color:#16232A;font-size:13px;font-weight:800;padding:6px 18px;line-height:1.4;display:{{ ctaDisplay }};transition:background 0.25s ease,color 0.25s ease" style-hover="background:#ffffff;color:#16232A">
+          <span class="t-ar">اطلب عرض سعر</span><span class="t-en">Get a Quote</span>
+        </a>
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:{{ burgerDisplay }};flex-direction:column;align-items:center;justify-content:center;gap:4px;width:48px;height:30px;box-sizing:border-box;padding:0;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer">
+          <span style="display:block;width:16px;height:2px;background:currentColor;transform:{{ burgerTop }};transition:transform .3s cubic-bezier(.2,.8,.2,1)"></span>
+          <span style="display:block;width:16px;height:2px;background:currentColor;opacity:{{ burgerMidOp }};transition:opacity .2s ease"></span>
+          <span style="display:block;width:16px;height:2px;background:currentColor;transform:{{ burgerBot }};transition:transform .3s cubic-bezier(.2,.8,.2,1)"></span>
+        </button>
+      </div>
+    </div>
+    <div style="display:{{ menuDisplay }};flex-direction:column;background:{{ panelBg }};color:{{ panelColor }};border-top:1px solid rgba(128,140,145,0.35)">
+      <div style="max-width:1280px;margin:0 auto;width:100%;box-sizing:border-box;padding:0 24px 24px;display:flex;flex-direction:column">
+        <a href="index.html" style="color:inherit;padding:16px 0;font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:inherit;padding:16px 0;border-top:1px solid rgba(128,140,145,0.35);font-size:16px;font-weight:700" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+        <a href="Quote.dc.html" style="margin-top:20px;background:#FF5B04;color:#16232A;font-size:15px;font-weight:800;padding:14px 18px;line-height:1.4;display:block;text-align:center" style-hover="background:#ffffff;color:#16232A">
+          <span class="t-ar">اطلب عرض سعر</span><span class="t-en">Get a Quote</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section data-screen-label="Page Title" data-hdr="dark" data-hdr-transparent="" style="background:#075056;color:#ffffff;border-bottom:1px solid #16232A">
+    <div style="max-width:1280px;margin:0 auto;padding:128px 24px 40px;display:flex;flex-direction:column">
+      <h1 style="margin:0;line-height:1.05;font-size:clamp(3.2rem,8vw,6rem)">
+        <span class="t-ar" style="font-weight:900">اتصل بنا</span>
+        <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-weight:400">CONTACT</span>
+      </h1>
+    </div>
+  </section>
+
+  <section data-screen-label="Contact Index" data-hdr="light" style="border-bottom:1px solid #16232A">
+    <div style="max-width:1280px;margin:0 auto;padding:64px 24px 88px">
+      <div style="display:flex;flex-wrap:wrap;gap:24px 72px;align-items:flex-start">
+        <div style="flex:1.6 1 340px;min-width:0">
+      <a href="{{ wa }}" target="_blank" rel="noopener" style="border-top:1px solid #16232A;display:grid;grid-template-columns:{{ rowCols }};gap:{{ rowGap }};align-items:center;padding:{{ rowPad }};color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+        <span style="display:flex;flex-direction:column;gap:6px;grid-column:{{ rowLabelCol }}"><span style="color:#FF5B04;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums">01</span><span style="font-weight:700;font-size:15px;color:#5B6B74"><span class="t-ar">واتساب</span><span class="t-en">WhatsApp</span></span></span>
+        <span style="font-weight:800;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.6;text-align:start"><span dir="ltr" style="font-variant-numeric:tabular-nums;unicode-bidi:isolate">+966 53 851 2342</span></span>
+        <svg class="t-ar" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+      </a>
+
+      <a href="tel:+966538512342" style="border-top:1px solid #16232A;display:grid;grid-template-columns:{{ rowCols }};gap:{{ rowGap }};align-items:center;padding:{{ rowPad }};color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+        <span style="display:flex;flex-direction:column;gap:6px;grid-column:{{ rowLabelCol }}"><span style="color:#FF5B04;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums">02</span><span style="font-weight:700;font-size:15px;color:#5B6B74"><span class="t-ar">اتصال مباشر</span><span class="t-en">Direct call</span></span></span>
+        <span style="font-weight:800;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.6;text-align:start"><span dir="ltr" style="font-variant-numeric:tabular-nums;unicode-bidi:isolate">+966 53 851 2342</span></span>
+        <svg class="t-ar" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+      </a>
+
+      <a href="mailto:info@alphadvanced.com" style="border-top:1px solid #16232A;display:grid;grid-template-columns:{{ rowCols }};gap:{{ rowGap }};align-items:center;padding:{{ rowPad }};color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+        <span style="display:flex;flex-direction:column;gap:6px;grid-column:{{ rowLabelCol }}"><span style="color:#FF5B04;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums">03</span><span style="font-weight:700;font-size:15px;color:#5B6B74"><span class="t-ar">البريد الإلكتروني</span><span class="t-en">Email</span></span></span>
+        <span style="font-weight:800;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.6;text-align:start"><span dir="ltr" style="unicode-bidi:isolate">info@alphadvanced.com</span></span>
+        <svg class="t-ar" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+      </a>
+
+      <a href="https://maps.google.com/?q=Novotel+Business+Park+King+Fahd+Road+Dammam" target="_blank" rel="noopener" style="border-top:1px solid #16232A;display:grid;grid-template-columns:{{ rowCols }};gap:{{ rowGap }};align-items:center;padding:{{ rowPad }};color:#16232A;transition:color 0.25s ease" style-hover="color:#FF5B04;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+        <span style="display:flex;flex-direction:column;gap:6px;grid-column:{{ rowLabelCol }}"><span style="color:#FF5B04;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums">04</span><span style="font-weight:700;font-size:15px;color:#5B6B74"><span class="t-ar">المقر</span><span class="t-en">Head office</span></span></span>
+        <span style="font-weight:800;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.6;text-align:start;text-wrap:pretty">
+          <span class="t-ar">نوفوتيل بيزنس بارك، الدمام</span>
+          <span class="t-en">Novotel Business Park, Dammam</span>
+        </span>
+        <svg class="t-ar" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+      </a>
+        </div>
+        <div style="flex:1 1 280px;position:sticky;top:110px;display:flex;flex-direction:column;gap:18px">
+          <span style="width:34px;height:5px;background:#FF5B04;display:block;margin-top:-2px"></span>
+          <p style="margin:0;font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:800;line-height:1.7;color:#16232A;text-wrap:balance">
+            <span class="t-ar">اتصال واحد يفصل مشروعك عن معدة مفحوصة جاهزة للعمل في موقعك<br></span>
+            <span class="t-en">One call stands between your project and an inspected machine ready to work on your site.</span>
+          </p>
+          <p style="margin:0;font-size:15px;line-height:1.9;color:#33424B;text-wrap:pretty">
+            <span class="t-ar">نرد خلال ساعات العمل، ونرافقك من عرض السعر حتى نهاية العقد</span>
+            <span class="t-en">We reply during business hours and stay with you from the quote to the end of the contract.</span>
+          </p>
+          <div style="border-top:1px solid #16232A;margin-top:6px;padding-top:20px;display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:600;color:#33424B;line-height:1.8">
+            <span><span class="t-ar">ساعات العمل: السبت إلى الخميس، 8:00 صباحاً إلى 5:00 مساءً</span><span class="t-en">Business hours: Saturday to Thursday, 8:00 AM to 5:00 PM</span></span>
+          </div>
+          <div style="border-top:1px solid #16232A;padding-top:20px;display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+            <a href="https://www.linkedin.com/company/alpha-advanced/" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:#16232A" style-hover="color:#FF5B04"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z" fill-rule="evenodd"></path></svg></a>
+            <a href="https://www.instagram.com/alphaadvancedrentals/" target="_blank" rel="noopener" aria-label="Instagram" style="color:#16232A" style-hover="color:#FF5B04"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0"></path></svg></a>
+            <a href="https://www.x.com/alpha_advanced" target="_blank" rel="noopener" aria-label="X" style="color:#16232A" style-hover="color:#FF5B04"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M18.42,14.009L27.891,3h-2.244l-8.224,9.559L10.855,3H3.28l9.932,14.455L3.28,29h2.244l8.684-10.095,6.936,10.095h7.576l-10.301-14.991h0Zm-3.074,3.573l-1.006-1.439L6.333,4.69h3.447l6.462,9.243,1.006,1.439,8.4,12.015h-3.447l-6.854-9.804h0Z"></path></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61567134101332" target="_blank" rel="noopener" aria-label="Facebook" style="color:#16232A" style-hover="color:#FF5B04"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M16,2c-7.732,0-14,6.268-14,14,0,6.566,4.52,12.075,10.618,13.588v-9.31h-2.887v-4.278h2.887v-1.843c0-4.765,2.156-6.974,6.835-6.974,.887,0,2.417,.174,3.043,.348v3.878c-.33-.035-.904-.052-1.617-.052-2.296,0-3.183,.87-3.183,3.13v1.513h4.573l-.786,4.278h-3.787v9.619c6.932-.837,12.304-6.74,12.304-13.897,0-7.732-6.268-14-14-14Z"></path></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" data-hdr="dark" style="background:#075056;color:#ffffff">
+    <div style="max-width:1280px;margin:0 auto;padding:72px 24px 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <a href="Quote.dc.html" style="position:relative;display:block;height:230px;background:rgba(255,255,255,0.8);clip-path:polygon(0 0, 100% 0, 100% calc(100% - 92px), calc(100% - 92px) 100%, 0 100%)">
+        <span style="position:absolute;inset:1px;background-color:#075056;background-image:linear-gradient(#ffffff,#ffffff);background-repeat:no-repeat;background-position:bottom center;background-size:100% 0%;color:#ffffff;clip-path:polygon(0 0, 100% 0, 100% calc(100% - 91.5px), calc(100% - 91.5px) 100%, 0 100%);display:flex;flex-direction:column;justify-content:space-between;padding:30px 34px;transition:background-size 0.45s cubic-bezier(0.4,0,0.2,1),color 0.35s ease" style-hover="background-size:100% 100%;color:#075056;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+          <span style="line-height:1.25">
+            <span class="t-ar" style="font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem)">اطلب عرض سعر</span>
+            <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem)">GET A QUOTE</span>
+          </span>
+          <svg class="t-ar" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+        </span>
+      </a>
+      <a href="Contact.dc.html" style="position:relative;display:block;height:230px;background:rgba(255,255,255,0.8);clip-path:polygon(0 0, 100% 0, 100% calc(100% - 92px), calc(100% - 92px) 100%, 0 100%)">
+        <span style="position:absolute;inset:1px;background-color:#075056;background-image:linear-gradient(#ffffff,#ffffff);background-repeat:no-repeat;background-position:bottom center;background-size:100% 0%;color:#ffffff;clip-path:polygon(0 0, 100% 0, 100% calc(100% - 91.5px), calc(100% - 91.5px) 100%, 0 100%);display:flex;flex-direction:column;justify-content:space-between;padding:30px 34px;transition:background-size 0.45s cubic-bezier(0.4,0,0.2,1),color 0.35s ease" style-hover="background-size:100% 100%;color:#075056;--dgrx:-6px;--dgry:-6px;--dgex:6px;--dgey:-6px">
+          <span style="line-height:1.25">
+            <span class="t-ar" style="font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem)">تواصل معنا</span>
+            <span class="t-en" dir="ltr" style="font-family:'Bulletproof','Cairo',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem)">GET IN TOUCH</span>
+          </span>
+          <svg class="t-ar" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgrx,0),var(--dgry,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M17 17L7 7M7 7H15M7 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg><svg class="t-en" dir="ltr" style="margin-right:auto;transition:transform .42s cubic-bezier(.2,.85,.25,1);transform:translate(var(--dgex,0),var(--dgey,0))" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"></path></svg>
+        </span>
+      </a>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:56px 24px 56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;align-items:start;justify-items:stretch">
+      <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+        <img src="assets/logos/logo-white.svg" alt="Alpha Advanced" style="height:24px;width:auto;display:block">
+        <p style="margin:0;font-size:14px;line-height:1.9;color:rgba(255,255,255,0.65);max-width:38ch;text-wrap:pretty">
+          <span class="t-ar">شركة ألفا المتطورة المحدودة لتأجير المعدات الثقيلة، الدمام، المملكة العربية السعودية.</span>
+          <span class="t-en">Alpha Advanced Limited, heavy equipment rental, Dammam, Saudi Arabia.</span>
+        </p>
+        <div style="display:flex;gap:18px;align-items:center;margin-top:4px">
+          <a href="https://www.linkedin.com/company/alpha-advanced/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z" fill-rule="evenodd"></path></svg></a>
+          <a href="https://www.instagram.com/alphaadvancedrentals/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0"></path></svg></a>
+          <a href="https://www.x.com/alpha_advanced" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="X"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M18.42,14.009L27.891,3h-2.244l-8.224,9.559L10.855,3H3.28l9.932,14.455L3.28,29h2.244l8.684-10.095,6.936,10.095h7.576l-10.301-14.991h0Zm-3.074,3.573l-1.006-1.439L6.333,4.69h3.447l6.462,9.243,1.006,1.439,8.4,12.015h-3.447l-6.854-9.804h0Z"></path></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61567134101332" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)" style-hover="color:#FF5B04" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" style="fill:currentColor;display:block"><path d="M16,2c-7.732,0-14,6.268-14,14,0,6.566,4.52,12.075,10.618,13.588v-9.31h-2.887v-4.278h2.887v-1.843c0-4.765,2.156-6.974,6.835-6.974,.887,0,2.417,.174,3.043,.348v3.878c-.33-.035-.904-.052-1.617-.052-2.296,0-3.183,.87-3.183,3.13v1.513h4.573l-.786,4.278h-3.787v9.619c6.932-.837,12.304-6.74,12.304-13.897,0-7.732-6.268-14-14-14Z"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <div style="color:#FF5B04;font-weight:800;font-size:12px"><span class="t-ar">الصفحات</span><span class="t-en">PAGES</span></div>
+        <a href="index.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">الرئيسة</span><span class="t-en">Home</span></a>
+        <a href="Equipment.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">المعدات</span><span class="t-en">Equipment</span></a>
+        <a href="About.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">من نحن</span><span class="t-en">About</span></a>
+        <a href="Careers.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">التوظيف</span><span class="t-en">Careers</span></a>
+        <a href="Contact.dc.html" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;width:max-content" style-hover="color:#FF5B04"><span class="t-ar">اتصل بنا</span><span class="t-en">Contact</span></a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:36px;align-items:flex-start">
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <div style="color:#FF5B04;font-weight:800;font-size:12px"><span class="t-ar">الموقع</span><span class="t-en">LOCATION</span></div>
+          <p style="margin:0;font-size:14px;font-weight:600;line-height:1.9;color:rgba(255,255,255,0.85)">
+            <span class="t-ar">نوفوتيل بيزنس بارك، طريق الملك فهد،<br>الخالدية الشمالية، الدمام 32232</span>
+            <span class="t-en">Novotel Business Park, King Fahd Road,<br>Al Khalidiyah Ash Shamaliyah, Dammam 32232</span>
+          </p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+          <div style="color:#FF5B04;font-weight:800;font-size:12px;margin-bottom:6px"><span class="t-ar">التواصل</span><span class="t-en">CONTACT</span></div>
+          <a href="tel:+966538512342" dir="ltr" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:start" style-hover="color:#FF5B04">+966 53 851 2342</a>
+          <a href="mailto:info@alphadvanced.com" dir="ltr" style="color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;white-space:nowrap;text-align:start" style-hover="color:#FF5B04">info@alphadvanced.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px">
+      <div style="border-top:1px solid rgba(255,255,255,0.12);padding:22px 0;font-size:12.5px;color:rgba(255,255,255,0.55);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <span><span class="t-ar">© 2026 شركة ألفا المتطورة المحدودة. جميع الحقوق محفوظة.</span><span class="t-en">© 2026 Alpha Advanced Limited. All rights reserved.</span></span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;966538512342&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;التواصل&quot;},&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ar&quot;,&quot;en&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;اللغة&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, tone: 'light', bg: '#ffffff', narrow: false, menuOpen: false };
+  componentDidMount() {
+    let saved = null;
+    try { saved = localStorage.getItem('alpha-lang'); } catch (e) {}
+    if (saved === 'ar' || saved === 'en') this.setState({ lang: saved });
+    this._onScroll = () => {
+      const narrow = window.innerWidth < 900;
+      if (narrow !== this.state.narrow) this.setState({ narrow, menuOpen: false });
+      const y = window.scrollY || 0;
+      const last = this._lastY ?? 0;
+      let hidden = this.state.hidden || false;
+      if (y > last + 6 && y > 160) hidden = true;
+      else if (y < last - 6 || y <= 160) hidden = false;
+      this._lastY = y;
+      if (hidden !== this.state.hidden) this.setState({ hidden });
+      const probe = 36;
+      let tone = 'light';
+      let bg = '#ffffff';
+      document.querySelectorAll('[data-hdr]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= probe && r.bottom > probe) {
+          tone = el.getAttribute('data-hdr');
+          bg = el.hasAttribute('data-hdr-transparent') ? 'transparent' : this.bgOf(el);
+        }
+      });
+      if (tone !== this.state.tone || bg !== this.state.bg) this.setState({ tone, bg });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+  bgOf(node) {
+    let el = node;
+    while (el && el !== document.documentElement) {
+      const c = getComputedStyle(el).backgroundColor;
+      if (c && c !== 'transparent' && !/rgba\(\s*0,\s*0,\s*0,\s*0\s*\)/.test(c)) return c;
+      el = el.parentElement;
+    }
+    return '#ffffff';
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onScroll);
+  }
+  renderVals() {
+    const lang = this.state.lang || (this.props.defaultLang ?? 'en');
+    const dark = this.state.tone === 'dark';
+    const solidBg = (!this.state.bg || this.state.bg === 'transparent') ? '#16232A' : this.state.bg;
+    const menuOn = this.state.narrow && this.state.menuOpen;
+    return {
+      lang,
+      hdrColor: dark ? '#ffffff' : '#16232A',
+      hdrBg: menuOn ? solidBg : (this.state.bg || '#ffffff'),
+      rowCols: this.state.narrow ? '1fr 28px' : 'minmax(110px,170px) 1fr 28px',
+      rowLabelCol: this.state.narrow ? '1 / -1' : 'auto',
+      rowGap: this.state.narrow ? '14px 24px' : '24px',
+      rowPad: this.state.narrow ? '26px 0' : '34px 0',
+      navDisplay: this.state.narrow ? 'none' : 'flex',
+      ctaDisplay: this.state.narrow ? 'none' : 'inline-block',
+      burgerDisplay: this.state.narrow ? 'flex' : 'none',
+      burgerTop: this.state.menuOpen ? 'translateY(7px) rotate(45deg)' : 'none',
+      burgerBot: this.state.menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
+      burgerMidOp: this.state.menuOpen ? 0 : 1,
+      menuDisplay: this.state.narrow && this.state.menuOpen ? 'flex' : 'none',
+      panelBg: solidBg,
+      panelColor: (!this.state.bg || this.state.bg === 'transparent') ? '#ffffff' : (dark ? '#ffffff' : '#16232A'),
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      hdrY: this.state.hidden ? '-110%' : '0%',
+      logoNavyOp: dark ? 0 : 1,
+      logoWhiteOp: dark ? 1 : 0,
+      toggleLang: () => {
+        const next = lang === 'ar' ? 'en' : 'ar';
+        try { localStorage.setItem('alpha-lang', next); } catch (e) {}
+        this.setState({ lang: next });
+      },
+      wa: 'https://wa.me/' + (this.props.whatsappNumber ?? '966538512342')
+    };
+  }
+}
+</script>
+</body>
+</html>
